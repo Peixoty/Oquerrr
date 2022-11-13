@@ -12,7 +12,7 @@ int main(int argc, char ** argv)
     FILE *pessoas = fopen("Pessoas.bin", "rb");
     FILE *grupos = fopen("Grupos.bin", "rb");
     FILE *conversas = fopen("Conversas.bin", "rb");
-    int choice, n_pessoas = 0, n_grupos = 0, n_conversas = 0;
+    int choice, n_pessoas = 0, n_grupos = 0, n_conversas = 0, i;
     Pessoa *p = NULL;
     Grupo *g = NULL;
     Conversa *c = NULL;
@@ -51,7 +51,14 @@ int main(int argc, char ** argv)
         Salva_grupos(g, n_grupos);
         Salva_conversas(c, n_conversas);
         free(p);
+        for (i = 0; i < n_grupos; i++) {    //desaloca o npessoas
+            free(g[i].npessoa);
+        }
         free(g);
+
+        for (i = 0; i < n_conversas; i++) { //desaloca os textos
+            free(c[i].texto);
+        }
         free(c);
         printf("Backup feito com sucesso\n");
         printf("Saindo...\n");
