@@ -51,6 +51,7 @@ int main(int argc, char ** argv)
         Salva_grupos(g, n_grupos);
         Salva_conversas(c, n_conversas);
         free(p);
+        
         for (i = 0; i < n_grupos; i++) {    //desaloca o npessoas
             free(g[i].npessoa);
         }
